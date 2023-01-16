@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Authenticated from '@/Layouts/Authenticated';
-import { Head } from '@inertiajs/inertia-react';
+import { Link, Head } from '@inertiajs/inertia-react';
 import { Inertia } from '@inertiajs/inertia';
 
 export default function Dashboard(props) {
@@ -63,7 +63,16 @@ export default function Dashboard(props) {
                                     <p>{news.description}</p>
                                     <div className="card-actions justify-end">
                                         <div className="badge badge-inline">{news.category}</div> 
-                                        <div className="badge badge-outline">{news.author}</div>
+                                        <div className="badge badge-outline">
+                                            <Link href={route('edit.news')} method="get" data={{id: news.id}} as ="button">
+                                                Edit
+                                            </Link>
+                                        </div>
+                                        <div className="badge badge-outline">
+                                            <Link href={route('delete.news')} method="post" data={{id: news.id}} as ="button">
+                                                Delete
+                                            </Link>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
